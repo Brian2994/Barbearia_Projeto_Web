@@ -1,0 +1,214 @@
+/* Formatação */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo para o header */
+.header {
+    min-height: 100vh; /* Ocupa todo o tamanho da tela */
+    display: flex;
+    flex-direction: column; /* Organiza verticalmente o conteudo */
+    justify-content: flex-start;
+    align-items: center;
+    color: white; /* Color do texto */
+    padding: 20px 0;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url(/Barbearia_Projeto_Web/assets/imagens/portada.png);
+    background-repeat: no-repeat; /* Aplicamos para que a imagem não se repita */
+    background-size: cover; /* Preenche completamente a tela com a imagem */
+    background-position: center; /* Centra a imagem */
+    
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px; /* Espaço em cada lado do container */
+}
+
+.logo {
+    font-size: 30px; /* Tamanho do texto */
+    font-weight: bold;
+    color: #fdb80b;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(117, 116, 116, 0.5);
+    font-family: Fantasy; /* Fonte do texto */
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none; 
+}
+
+.navbar li {
+    margin-left: 20px; /* Espaços entre os elementos do menú */
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    padding: 10px 15px;
+}
+
+/* Efeito hover para o menú */
+.navbar a:hover {
+    background-color: #3f4347; /* Fondo oscuro ao passar o mause */
+    border-radius: 5px; /* Bordas arredondadas */
+}
+
+.conteudo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    text-align: center;
+    padding: 20px;
+}
+
+.txt h1 {
+    font-size: 30px;
+    margin-bottom: 30px;
+    text-transform: uppercase; /* Texto em maiúscula */
+    color: white;
+}
+
+.buttons a {
+    text-decoration: none;
+    background-color: #3f4347;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+/* Efeito hover para os buttons */
+.buttons a:hover {
+    background-color: #545d66;
+}
+
+
+/* Estilo para o  main */
+.main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 20px; /* Espaço dentro do main */
+    min-height: 100vh;
+    background-color: #8b4513b0;
+}
+
+.left {
+    flex: 1; /* Ocupará o 50% do ancho esquerdo */
+    padding-right: 20px;
+}
+
+.left img {
+    width: 600px; /* Ancho da imagem */
+    height: auto;
+    border-radius: 10px; /* Bordas arredondadas */
+    
+}
+
+.right {
+    flex: 1; /* Ocupará o 50% do ancho direito */
+    padding-left: 20px;
+}
+
+.right h1 {
+    font-size: 30px;
+    margin-bottom: 25px; /* Espaço entre o titulo e a descrição */
+    text-transform: uppercase; /* Texto em maiúscula */
+    color: white;
+}
+
+.right p {
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+/* Estilo para a section serviços */
+#servicos {
+    padding: 40px 20px;
+    background-color: #bb82829f;
+    text-align: center;
+    min-height: 100vh;
+}
+
+/* Estilo para a section unidades */
+#unidades {
+    padding: 40px 20px;
+    background-color: #721e1e;
+    text-align: center;
+    min-height: 100vh; /* Ocupa todo o tamanho da tela */
+}
+
+#unidades,
+#servicos h2 {
+    font-size: 20px;
+    font-style: italic;
+    font-weight: normal; /* Remove o negrito */
+    color: rgb(247, 227, 227);
+    margin-bottom: 40px; /* margem abaixo */
+    
+}
+
+#unidades,
+#servicos b {
+    font-size: 45px;
+    color: rgb(247, 227, 227);
+    font-style: normal;
+}
+
+.unidades-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.unidade {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 260px;
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.unidade:hover {
+    transform: scale(1.03);
+}
+
+.unidade img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover; /* ajustar imagen cental */
+    border-radius: 8px;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+.unidade img:hover {
+    filter: grayscale(0%) brightness(70%); /* grayscale mostra a imagem colorida, brightness escurece a imagem */
+}
+
+.unidade h3 {
+    margin-top: 15px;
+    font-size: 20px;
+    color: #333;
+}
+
+.unidade p {
+    font-size: 15px;
+    color: #555;
+    margin-top: 10px;
+    line-height: 1.5;
+}
+
+footer {
+    text-align: center;
+}
