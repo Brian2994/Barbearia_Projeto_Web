@@ -1,0 +1,32 @@
+CREATE TABLE usuarios(
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR (100) NOT NULL,
+    email VARCHAR (100) NOT NULL UNIQUE,
+    senha VARCHAR (255) NOT NULL
+); 
+
+CREATE TABLE servicos(
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    descricao TEXT,
+    preco DECIMAL(10,2) NOT NULL  
+);
+
+CREATE TABLE planos (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    descricao TEXT,
+    preco DECIMAL(10,2) NOT NULL
+);
+
+CREATE TABLE agendamentos(
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    usuario_id BIGINT UNSIGNED NOT NULL,
+    servico_id BIGINT UNSIGNED NOT NULL,
+    plano_id BIGINT UNSIGNED,
+    data DATE NOT NULL,
+    horario TIME NOT NULL,
+    FOREING KEY (usuario_id) REFERENCES usuarios(id),
+    FOREING KEY (servico_id) REFERENCES servicos(id),
+    FOREING KEY (plano_id) REFERENCES plano(id)
+);
