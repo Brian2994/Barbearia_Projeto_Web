@@ -5,6 +5,17 @@
     box-sizing: border-box;
 }
 
+.nav-barra-fixa {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 9999;
+    padding: 10px 0;
+}
+
 /* Estilo para o header */
 .header {
     min-height: 100vh; /* Ocupa todo o tamanho da tela */
@@ -14,7 +25,7 @@
     align-items: center;
     color: white; /* Color do texto */
     padding: 20px 0;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url(/Barbearia_Projeto_Web/HTML/assets/imagens/portada.png);
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url(/HTML/assets/imagens/portada.png);
     background-repeat: no-repeat; /* Aplicamos para que a imagem não se repita */
     background-size: cover; /* Preenche completamente a tela com a imagem */
     background-position: center; /* Centra a imagem */
@@ -92,11 +103,12 @@
 
 
 /* Estilo para o  main */
-.main {
+#sobre {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 50px 20px; /* Espaço dentro do main */
+    padding: 20px 40px; /* Espaço dentro */
+    padding-top: 75px;
     min-height: 100vh;
     background-color: #8b4513b0;
 }
@@ -107,7 +119,7 @@
 }
 
 .left img {
-    width: 600px; /* Ancho da imagem */
+    width: 550px; /* Ancho da imagem */
     height: auto;
     border-radius: 10px; /* Bordas arredondadas */
     
@@ -133,6 +145,7 @@
 /* Estilo para a section serviços */
 #servicos {
     padding: 40px 20px;
+    padding-top: 75px;
     background-color: #5c4033;
     text-align: center;
     min-height: 100vh;
@@ -141,6 +154,7 @@
 /* Estilo para a section unidades */
 #unidades {
     padding: 40px 20px;
+    padding-top: 75px;
     background-color: #721e1e;
     text-align: center;
     min-height: 100vh; /* Ocupa todo o tamanho da tela */
