@@ -25,7 +25,7 @@
     align-items: center;
     color: white; /* Color do texto */
     padding: 20px 0;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url(/HTML/assets/imagens/portada.png);
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url(https://s4.gifyu.com/images/bpFOh.webp);
     background-repeat: no-repeat; /* Aplicamos para que a imagem não se repita */
     background-size: cover; /* Preenche completamente a tela com a imagem */
     background-position: center; /* Centra a imagem */

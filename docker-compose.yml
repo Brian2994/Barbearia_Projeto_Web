@@ -7,13 +7,13 @@ services:
     restart: always
     environment:
       MYSQL_DATABASE: projeto
-      MYSQL_USER: teste 
+      MYSQL_USER: teste         
       MYSQL_PASSWORD: testesenha123
       MYSQL_ROOT_PASSWORD: roottestesenha123
     ports:
-      - "3306:3306"
+      - "3306:3306" 
     volumes:
-      - mysql_data:/var/lib/mysql
+      - mysql_data:/var/lib/mysql                 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: projeto_phpmyadmin
@@ -24,7 +24,7 @@ services:
       PMA_HOST: mysql
       MYSQL_ROOT_PASSWORD: roottestesenha123
   apache:
-    image: php:8.1-apache
+    build: .
     container_name: projeto_apache
     ports:
       - "8000:80"
