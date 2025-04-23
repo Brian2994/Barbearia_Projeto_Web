@@ -23,14 +23,14 @@ services:
     environment:
       PMA_HOST: mysql
       MYSQL_ROOT_PASSWORD: roottestesenha123
-  apache:
+  apache: 
     build: .
     container_name: projeto_apache
     ports:
       - "8000:80"
     volumes:
-      - C:/Users/samul/Documents/Barbearia_Projeto_Web:/var/www/html:rw
-      - C:/Users/samul/Documents/Barbearia_Projeto_Web/APACHE/000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - /home/samuel/Documents/ProjetoFacul:/var/www/html:rw
+      - /home/samuel/Documents/ProjetoFacul/APACHE/000-default.conf:/etc/apache2/sites-available/000-default.conf
     depends_on:
       - mysql
 volumes:
