@@ -69,6 +69,23 @@ button:hover {
   background-color: #6b4328;
 }
 
+.password-recovery {
+  text-align: center;
+  margin-top: -5px;
+  margin-bottom: 3px;
+}
+
+.password-recovery a {
+  color: #5c4033;
+  text-decoration: underline;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.password-recovery a:hover {
+  color: #8b5e3c;
+}
+
 .switch-link {
   text-align: center;
   margin-top: 10px;

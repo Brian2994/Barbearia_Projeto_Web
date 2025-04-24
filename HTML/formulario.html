@@ -12,7 +12,6 @@
 
   <!-- Formulário de Cadastro -->
   <form action="/PHP/cadastro.php" method="POST" id="cadastroForm" class="form-container">
-    ">
     <h2>Cadastro</h2>
     <input type="text" name="nome" placeholder="Nome completo" required>
     <input type="email" name="email" placeholder="Email" required>
@@ -28,7 +27,14 @@
     <input type="email" name="email" placeholder="Email" required>
     <input type="password" name="senha" placeholder="Senha" required>
     <button type="submit">Entrar</button>
-    <div class="switch-link" onclick="mostrarCadastro()">Ainda não tem uma conta? Cadastre-se</div>
+    <!-- recuperação de senha -->
+    <div class="password-recovery">
+      <a href="recuperar_senha.html">Esqueceu sua senha?</a>
+    </div>
+    <!-- cadastro de usuario -->
+    <div class="switch-link" onclick="mostrarCadastro()">
+      Ainda não tem uma conta? Cadastre-se
+    </div>
   </form>
 
   <!-- Arquivo JS externo -->
