@@ -1,3 +1,4 @@
+/* Formatação */
 * {
   margin: 0;
   padding: 0;
@@ -6,7 +7,7 @@
 
 body {
   min-height: 100vh;
-  background: #333;
+  background: #721e1e;
   color: white;
   display: flex;
   flex-direction: column;
@@ -18,7 +19,7 @@ body {
 
 h1 {
   margin-bottom: 40px;
-  font-size: 2.2rem;
+  font-size: 35px;
   color: white;
 }
 
@@ -32,9 +33,8 @@ h1 {
 .card {
   width: 220px;
   height: 300px;
-  background: linear-gradient(to bottom, #5c4020, #5c4033);
   border-radius: 16px;
-  padding: 20px;
+  padding: 20px 10px;
   text-align: center;
   color: white;
   box-shadow: 0 10px 20px rgba(0,0,0,0.4);
@@ -42,6 +42,11 @@ h1 {
   transition: transform 0.5s ease, box-shadow 0.5s ease;
   cursor: pointer;
   position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Hover mágico 3D */
@@ -53,12 +58,12 @@ h1 {
 
 /* Contenido */
 .card h2 {
-  margin-bottom: 10px;
-  font-size: 1.3rem;
+  margin-bottom: 20px;
+  font-size: 20px;
 }
 
 .card p {
-  font-size: 0.9rem;
+  font-size: 14px;
   margin-bottom: 20px;
 }
 
@@ -73,5 +78,38 @@ h1 {
 }
 
 .card a:hover {
-  background-color: #f2f2f2;
+  background-color: #721e1e;
+}
+
+/* Fondo para os card */
+.card-vila {
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
+  url('/HTML/assets/imagens/unidade_vila_olimpia.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.card-itaim {
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
+  url('/HTML/assets/imagens/unidade_itaim_bibi.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.card-moema {
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
+  url('/HTML/assets/imagens/unidade_moema.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.card-oscar {
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
+  url('/HTML/assets/imagens/unidade_oscar_freire.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
