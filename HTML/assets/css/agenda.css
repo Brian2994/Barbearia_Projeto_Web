@@ -1,0 +1,155 @@
+/* Formatação */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo geral */
+body {
+    background-color: #721e1e;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 650px;
+}
+
+/* Calendário */
+.calendar-container {
+    background: #424242;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-container h1 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 80px);
+    gap: 5px;
+    justify-content: center;
+}
+
+.day-header {
+    background: #8b4513b0;
+    color: #fff;
+    text-align: center;
+    padding: 8px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.day,
+.empty {
+    text-align: center;
+    padding: 8px;
+    background-color: #e9ecef;
+    border-radius: 8px;
+}
+
+.day {
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.day:hover {
+    background-color: #d86262;
+}
+
+.day.selected {
+    background-color: #721e1e;
+    color: white;
+    border-radius: 6px;
+}
+
+.day.disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    color: #666;
+}
+
+/* horarios */
+.schedule {
+    display: none;
+    background: #424242;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.schedule h2 {
+    margin-bottom: 15px;
+    color: #fff;
+    text-align: center;
+}
+
+.slot {
+    padding: 8px;
+    margin: 2px;
+    background-color: #dee2e6;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.slot:hover {
+    background-color: #d86262;
+}
+
+.slot.selected-slot {
+    background-color: #721e1e;
+    color: white;
+}
+
+/* Confirmar */
+#confirmButton {
+    display: none;
+    padding: 10px 15px;
+    background-color: #424242;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    align-self: center;
+}
+
+#confirmButton:hover {
+    background-color: #d86262;
+}
+
+/* Confirmação */
+.confirmation-container {
+    display: none;
+    padding: 15px;
+    background-color: #e0ffe0;
+    border: 2px solid #a5d6a7;
+    border-radius: 8px;
+}
+
+.confirmation-container h3 {
+    color: #155724;
+    margin-bottom: 10px;
+}
+
+.confirmation-container p {
+    font-size: 18px;
+    color: #155724;
+}
