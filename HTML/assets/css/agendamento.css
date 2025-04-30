@@ -7,7 +7,7 @@
 
 body {
   min-height: 100vh;
-  background: #721e1e;
+  background: #7F2D1A;
   color: white;
   display: flex;
   flex-direction: column;
@@ -78,7 +78,7 @@ h1 {
 }
 
 .card a:hover {
-  background-color: #721e1e;
+  background-color: #7F2D1A;
 }
 
 /* Fondo para os card */
