@@ -40,14 +40,20 @@
     padding: 0 20px; /* Espaço em cada lado do container */
 }
 
-.logo {
-    font-size: 30px; /* Tamanho do texto */
+/* .logo {
+    font-size: 30px; /* Tamanho do texto
     font-weight: bold;
     color: #fdb80b;
     text-decoration: none;
     text-transform: uppercase;
     text-shadow: 2px 2px 4px rgba(117, 116, 116, 0.5);
-    font-family: Fantasy; /* Fonte do texto */
+    font-family: Fantasy; /* Fonte do texto
+} */
+
+.logo-img {
+    height: 45px;
+    width: auto;
+    display: block;
 }
 
 .navbar ul {
