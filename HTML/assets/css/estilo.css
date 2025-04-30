@@ -13,7 +13,7 @@
     background-color: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(4px);
     z-index: 9999;
-    padding: 10px 0;
+    padding: 5px 0;
 }
 
 /* Estilo para o header */
@@ -69,7 +69,7 @@
     text-decoration: none;
     color: white;
     font-size: 20px;
-    padding: 10px 15px;
+    padding: 8px 10px;
 }
 
 /* Efeito hover para o menú */
