@@ -20,13 +20,14 @@ CREATE TABLE planos (
 );
 
 CREATE TABLE agendamentos(
-    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     usuario_id BIGINT UNSIGNED NOT NULL,
-    servico_id BIGINT UNSIGNED NOT NULL,
-    plano_id BIGINT UNSIGNED,
+    servico_id INT UNSIGNED NOT NULL,
+    planos_id INT UNSIGNED DEFAULT NULL,
     data DATE NOT NULL,
+    local VARCHAR(100),
     horario TIME NOT NULL,
-    FOREING KEY (usuario_id) REFERENCES usuarios(id),
-    FOREING KEY (servico_id) REFERENCES servicos(id),
-    FOREING KEY (plano_id) REFERENCES plano(id)
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
+    FOREIGN KEY (servico_id) REFERENCES servicos(id),
+    FOREIGN KEY (planos_id) REFERENCES planos(id)
 );

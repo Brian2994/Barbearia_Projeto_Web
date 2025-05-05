@@ -29,7 +29,6 @@ services:
     ports:
       - "8000:80"
     volumes:
-      - /home/samuel/Documents/ProjetoFacul:/var/www/html:rw
       - /home/samuel/Documents/ProjetoFacul/APACHE/000-default.conf:/etc/apache2/sites-available/000-default.conf
     depends_on:
       - mysql

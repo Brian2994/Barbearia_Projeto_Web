@@ -21,7 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
         $stmt->bindParam(':nome', $nome);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':senha', $SenhaHash);
-
         $stmt->execute();
         
         echo "Cadastro realizado com sucesso!";

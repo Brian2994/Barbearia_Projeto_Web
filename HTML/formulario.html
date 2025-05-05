@@ -9,7 +9,29 @@
 </head>
 
 <body>
-
+  <!-- Formulário de Agendamento-->
+  <form action="/PHP/agendamento.php" method="POST" id="agendamentoForm" class="form-container">
+    <label for="servico_id">Serviço:</label>
+    <select name="servico_id" id="servico_id" required>
+      <option value="1">Corte de barba</option>
+      <option value="2">Corte de cabelo </option>
+      <option value="3">Higiene e cuidados</option>
+      <option value="4">Corte e barba</option>
+    </select>
+    <label for="data">Data:</label>
+    <input type="date" name="data" id="data" required>
+    <label for="horario">Horário:</label>
+    <input type="time" name="horario" id="horario" required>
+    <label for="plano_id">Plano:</label>
+    <select name="plano_id" id="plano_id">
+      <option value="">Nenhum</option>
+      <option value="1">Plano Corte de Cabelo Mensal</option>
+      <option value="2">Plano Corte de Barba Mensal</option>
+      <option value="3">Plano Luxo Mensal</option>
+    </select>
+    <button type="submit">Confirmar Agendamento</button>
+  </form>
+  
   <!-- Formulário de Cadastro -->
   <form action="/PHP/cadastro.php" method="POST" id="cadastroForm" class="form-container">
     <h2>Cadastro</h2>
