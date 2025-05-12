@@ -29,7 +29,6 @@
     background-repeat: no-repeat; /* Aplicamos para que a imagem não se repita */
     background-size: cover; /* Preenche completamente a tela com a imagem */
     background-position: center; /* Centra a imagem */
-    
 }
 
 .container {
@@ -58,7 +57,7 @@
 
 .navbar ul {
     display: flex;
-    list-style: none; 
+    list-style: none;
 }
 
 .navbar li {
@@ -128,7 +127,6 @@
     width: 550px; /* Ancho da imagem */
     height: auto;
     border-radius: 10px; /* Bordas arredondadas */
-    
 }
 
 .right {
@@ -166,25 +164,37 @@
     min-height: 100vh; /* Ocupa todo o tamanho da tela */
 }
 
+
+/* Estilo para a section planos */
+#planos {
+    padding: 40px 20px;
+    padding-top: 75px;
+    background-color: #5c4033;
+    text-align: center;
+    min-height: 100vh;
+}
+
 #servicos h2,
-#unidades h2 {
+#unidades h2,
+#planos h2 {
     font-size: 20px;
     font-style: italic;
     font-weight: normal; /* Remove o negrito */
     color: rgb(247, 227, 227);
     margin-bottom: 40px; /* margem abaixo */
-    
 }
 
 #servicos b,
-#unidades b {
+#unidades b,
+#planos b {
     font-size: 45px;
     color: rgb(247, 227, 227);
     font-style: normal;
 }
 
 .servicos-container,
-.unidades-container {
+.unidades-container,
+.planos-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -195,7 +205,7 @@
 .unidade {
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     width: 260px;
     padding: 20px;
     transition: transform 0.3s ease;
@@ -249,6 +259,47 @@
     color: #555;
     margin-top: 10px;
     line-height: 1.5;
+}
+
+.plano {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.plano img {
+    width: 100%;
+    height: 260px;
+    object-fit: contain;
+    border-radius: 12px;
+    transition: all 0.5s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transform: scale(1);
+}
+
+.plano ul {
+    list-style-type: none; /* Quita los puntos de la lista */
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.plano li {
+    padding: 10px 0;
+    position: relative;
+    padding-left: 10px; /* Espacio para el ícono */
+}
+
+.plano li::before {
+    content: "✔"; /* Puedes usar otro ícono como • o ➤ */
+    position: absolute;
+    left: 0;
+    color: #2ecc71; /* Verde suave */
+    font-weight: bold;
 }
 
 footer {
