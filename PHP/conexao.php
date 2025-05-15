@@ -20,6 +20,6 @@ catch (PDOException $e){
     file_put_contents($logFile, $mensagemerro, FILE_APPEND);
     echo "<h2 style='color:red;>Erro interno ao tentar se conectar ao banco de dados.</h2>";
 }
-?>
+
 
 

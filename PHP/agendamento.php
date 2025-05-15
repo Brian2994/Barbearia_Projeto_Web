@@ -4,7 +4,7 @@ session_start();
 require_once 'conexao.php';
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: login.php");
+    header("Location: /HTML/formulario.html");
     exit;
 }
 
@@ -39,4 +39,3 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
 } else {
     echo "Método inválido.";
 }
-?>

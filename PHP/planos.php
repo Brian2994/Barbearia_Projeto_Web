@@ -3,8 +3,8 @@ require_once 'conexao.php';
 
 $planos = [
     ['nome' => 'Plano Corte de Cabelo Mensal', 'descricao' => 'Cortes ilimitados', 'preco' => 79.90],
-    ['nome' => 'Plano Corte de Barba Mensal', 'descricao' => '4 cortes por mês', 'preco' => 69.90],
-    ['nome' => 'Plano Luxo Mensal', 'descricao' => 'Cortes Ilimitados + Barba ilimitada', 'preco' => 124.90],
+    ['nome' => 'Plano Corte de Barba Mensal', 'descricao' => '4 cortes por mês', 'preco' => 59.90],
+    ['nome' => 'Plano Luxo Mensal', 'descricao' => 'Cortes Ilimitados + Barba ilimitada', 'preco' => 129.90],
 ];
 
 try {
@@ -25,4 +25,4 @@ try {
     $pdo->rollBack();
     echo "Erro ao inserir os planos: " . $e->getMessage();
 }
-?>
+
