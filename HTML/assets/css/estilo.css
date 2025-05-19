@@ -323,3 +323,93 @@
 footer {
     text-align: center;
 }
+/* Responsividade para telas pequenas (celulares) */
+@media (max-width: 768px) {
+    .navbar {
+    display: none;
+    flex-direction: column;
+    align-items: center; /* centraliza os itens */
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.95);
+    padding: 15px 20px;
+    border-radius: 10px;
+    z-index: 9999;
+    }
+
+    .left,
+    .right {
+        padding: 0;
+        width: 100%;
+    }
+
+    .left img {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .servicos-container,
+    .unidades-container,
+    .planos-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar ul {
+    flex-direction: column;
+    gap: 15px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    }
+
+    .navbar li {
+        margin: 0;
+    }
+
+    .conteudo {
+        flex-direction: column;
+        padding: 20px 10px;
+    }
+}
+.hamburguer {
+    display: none;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+@media (max-width: 768px) {
+    .hamburguer {
+        display: block;
+    }
+
+    .navbar {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background-color: rgba(0, 0, 0, 0.9);
+        padding: 10px;
+        border-radius: 5px;
+        z-index: 9999;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar li {
+        margin: 15px 0;
+    }
+
+    .navbar.show {
+        display: flex;
+    }
+}
+
