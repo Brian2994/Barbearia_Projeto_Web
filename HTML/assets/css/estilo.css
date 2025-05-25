@@ -77,6 +77,16 @@
     border-radius: 5px; /* Bordas arredondadas */
 }
 
+.topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hamburguer {
+    display: none;
+}
+
 .conteudo {
     display: flex;
     justify-content: center;
@@ -294,12 +304,12 @@
     list-style-type: none; /* Quita los puntos de la lista */
     padding: 0;
     margin: 0;
-    font-size: 18px;
+    font-size: 15px;
     color: #333;
 }
 
 .plano ul li {
-    padding: 5px 0;
+    padding: 3px 0;
     display: flex;
     align-items: flex-start;
 }
@@ -322,21 +332,59 @@
 
 footer {
     text-align: center;
+    padding: 10px 0;
 }
-/* Responsividade para telas pequenas (celulares) */
+/* Responsividade para telas até 768px */
 @media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hamburguer {
+        display: block;
+        font-size: 28px;
+        color: white;
+        cursor: pointer;
+    }
+
     .navbar {
-    display: none;
-    flex-direction: column;
-    align-items: center; /* centraliza os itens */
-    position: absolute;
-    top: 60px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.95);
-    padding: 15px 20px;
-    border-radius: 10px;
-    z-index: 9999;
+        width: 100%;
+        position: relative;
+    }
+
+    .navbar ul {
+        display: none;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.9);
+        position: absolute;
+        top: 5px;
+        left: 0;
+        width: 100%;
+        padding: 10px 0;
+        z-index: 10000;
+    }
+
+    #menu.show ul {
+        display: flex;
+        position: absolute;
+    }
+
+    .navbar ul li {
+        margin: 0;
+        padding: 10px 20px;
+        text-align: right;
+        width: 100%;
+    }
+
+    .navbar a {
+        font-size: 18px;
+    }
+
+    /* Sobre nós */
+    #sobre {
+        flex-direction: column;
+        padding: 20px;
     }
 
     .left,
@@ -346,70 +394,24 @@ footer {
     }
 
     .left img {
-        width: 90%;
-        margin: 0 auto;
+        width: 100%;
+        height: auto;
+        margin-bottom: 20px
     }
 
-    .servicos-container,
-    .unidades-container,
-    .planos-container {
-        flex-direction: column;
-        align-items: center;
+    .servico,
+    .unidade,
+    .plano {
+        width: 50%;
+        max-width: 350px;
     }
 
-    .navbar ul {
-    flex-direction: column;
-    gap: 15px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    .txt h1 {
+        font-size: 26px;
     }
 
-    .navbar li {
-        margin: 0;
-    }
-
-    .conteudo {
-        flex-direction: column;
-        padding: 20px 10px;
+    .buttons a {
+        font-size: 16px;
+        padding: 10px 16px;
     }
 }
-.hamburguer {
-    display: none;
-    font-size: 30px;
-    color: white;
-    cursor: pointer;
-    z-index: 10000;
-}
-
-@media (max-width: 768px) {
-    .hamburguer {
-        display: block;
-    }
-
-    .navbar {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        right: 20px;
-        background-color: rgba(0, 0, 0, 0.9);
-        padding: 10px;
-        border-radius: 5px;
-        z-index: 9999;
-    }
-
-    .navbar ul {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .navbar li {
-        margin: 15px 0;
-    }
-
-    .navbar.show {
-        display: flex;
-    }
-}
-
