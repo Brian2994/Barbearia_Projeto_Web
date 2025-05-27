@@ -113,3 +113,47 @@ h1 {
   background-position: center;
   background-repeat: no-repeat;
 }
+
+@media (max-width: 768px) {
+  body {
+    padding: 20px;
+    overflow: auto;
+  }
+
+  .gallery {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    transform: none;
+  }
+
+  .card {
+    width: 85%;
+    max-width: 350px;
+    height: auto;
+    transform: none;
+    /* desativa a rotação em dispositivos móveis */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .card:hover {
+    transform: none;
+    scale: 1.05;
+    z-index: auto;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  h1 {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .card p {
+    font-size: 15px;
+  }
+
+  .card a {
+    padding: 12px 24px;
+    font-size: 16px;
+  }
+}
