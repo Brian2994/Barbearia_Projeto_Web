@@ -1,3 +1,8 @@
+<?php
+session_start();
+?>
+
+<!--HTML na mesma página -->
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -53,7 +58,7 @@
     <p style = "color: red;"></p>
     <!-- recuperação de senha -->
     <div class="password-recovery">
-      <a href="recuperar_senha.html">Esqueceu sua senha?</a>
+      <a href="recuperarsenha.php">Esqueceu sua senha?</a>
     </div>
     <!-- cadastro de usuario -->
     <div class="switch-link" onclick="mostrarCadastro()">

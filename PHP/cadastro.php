@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
         $stmt->bindParam(':senha', $SenhaHash);
         $stmt->execute();
 
-        header("Location: /HTML/formulario.html");
+        header("Location: formulario.php");
         exit;
     } catch (PDOException $e){
         echo "Erro ao cadastrar o usuario: " . $e->getMessage();

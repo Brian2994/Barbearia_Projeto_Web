@@ -1,0 +1,25 @@
+<?php
+session_start();
+?>
+
+<!--HTML na mesma página -->
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Recuperar Senha</title>
+    <link rel="stylesheet" href="/HTML/assets/css/recuperar_senha.css">
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Recuperar Senha</h2>
+        <form action="/PHP/enviar_email_recuperacao.php" method="POST">
+            <input type="email" name="email" placeholder="Digite seu email" required>
+            <button type="submit">Enviar instruções</button>
+        </form>
+    </div>
+</body>
+
+</html> 

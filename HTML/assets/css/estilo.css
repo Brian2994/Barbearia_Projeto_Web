@@ -65,7 +65,8 @@
 }
 
 .navbar a {
-    text-decoration: none;
+    text-decoration: none !important;
+    text-decoration-color: white;   
     color: white;
     font-size: 20px;
     padding: 8px 10px;
@@ -424,3 +425,10 @@ footer {
         padding: 10px 16px;
     }
 }
+    .usuario-logado {
+    color: white !important;
+}
+
+
+
+
