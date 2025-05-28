@@ -153,3 +153,7 @@ body {
     font-size: 18px;
     color: #155724;
 }
+
+@media (max-width: 768px) {
+    
+}
