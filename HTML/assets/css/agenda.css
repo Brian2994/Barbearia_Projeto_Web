@@ -169,7 +169,7 @@ body {
     .day,
     .empty {
         padding: 3px;
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .schedule {
@@ -177,7 +177,7 @@ body {
     }
 
     .slot {
-        font-size: 14px;
+        font-size: 11px;
         padding: 3px;
         margin: 2px;
     }
