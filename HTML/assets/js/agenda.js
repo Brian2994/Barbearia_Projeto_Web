@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Confirmação
   confirmButton.addEventListener("click", () => {
     if (selectedDay && selectedSlot) {
-      confirmationMessage.textContent = `✅ Sua cita foi agendada para o dia ${selectedDay} às ${selectedSlot}.`;
+      confirmationMessage.textContent = `✅ Sua cita foi agendada para o dia ${selectedDay} às ${selectedSlot}`;
       confirmationSection.style.display = "block";
       scheduleSection.style.display = "none";
       confirmButton.style.display = "none";
