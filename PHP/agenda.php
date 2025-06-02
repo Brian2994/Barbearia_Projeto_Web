@@ -88,7 +88,7 @@ session_start();
 
         <!-- Confirmação -->
         <section class="confirmation-container" id="confirmation">
-            <h3>Confirmação de sua cita!</h3>
+            <h3>Confirmação do seu agendamento!</h3>
             <p id="confirmationMessage"></p>
         </section>
     </main>

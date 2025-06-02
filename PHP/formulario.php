@@ -69,7 +69,6 @@ session_start();
 
   <!-- Arquivo JS externo -->
   <script src="/HTML/assets/js/script_formulario.js"></script>
-  <script src="HTML/assets/js/validacao.js"></script>
 </body>
 
 </html>
