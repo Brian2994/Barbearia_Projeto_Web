@@ -16,17 +16,27 @@ session_start();
 <script>
     function toggleMenu() {
     const menu = document.getElementById('menu');
-    menu.classList.toggle('show');
-}
-    document.querySelectorAll('.navbar a').forEach(link => {
-    link.addEventListener('click', () => {
-    document.getElementById('menu').classList.remove('show');
+        menu.classList.toggle('show');
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        const menu = document.getElementById('menu');
+        const hamburger = document.querySelector('.hamburguer');
+        document.querySelectorAll('.navbar a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('show');
+            });
+        });
+        document.addEventListener('click', function (e) {
+            const menu = document.getElementById('menu');
+            const hamburger = document.querySelector('.hamburguer');
+            if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+                menu.classList.remove('show');
+            }
+        });
     });
-});
     document.addEventListener('click', function(e) {
     const menu = document.getElementById('menu');
     const hamburger = document.querySelector('.hamburguer');
-
     if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
     menu.classList.remove('show');
 }
