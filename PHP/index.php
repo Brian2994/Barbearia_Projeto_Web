@@ -161,7 +161,7 @@ session_start();
         <div class="unidades-container">
             <!-- Unidade 1 -->
             <div class="unidade">
-                <a href="agendamento.php?unidade=Vila_Olimpia">
+                <href="agendamento.php?unidade=Vila_Olimpia">
                 <img src="https://s4.gifyu.com/images/bpFOg.webp" alt="Unidade Vila Olímpia">
                 <h3>VILA OLÍMPIA</h3>
                 <p>
@@ -172,12 +172,11 @@ session_start();
                     Segunda a sexta: 9h às 20h<br>
                     Sábado: 9h às 18h
                 </p>
-                </a>
             </div>
 
             <!-- Unidade 2 -->
             <div class="unidade">
-                <a href="agendamento.php?unidade=Itaim_Bibi">
+                <ref="agendamento.php?unidade=Itaim_Bibi">
                 <img src="https://s4.gifyu.com/images/bpFGJ.jpg " alt="Unidade Itaim Bibi">
                 <h3>ITAIM BIBI</h3>
                 <p>
@@ -188,12 +187,11 @@ session_start();
                     Segunda a sexta: 9h às 20h<br>
                     Sábado: 9h às 18h
                 </p>
-                </a>
             </div>
 
             <!-- Unidade 3 -->
             <div class="unidade">
-                <a href="agendamento.php?unidade=Moema">
+                <href="agendamento.php?unidade=Moema">
                 <img src="https://s4.gifyu.com/images/bpFOl.jpg" alt="Unidade Moema">
                 <h3>MOEMA</h3>
                 <p>
@@ -204,12 +202,11 @@ session_start();
                     Segunda a sexta: 9h às 20h<br>
                     Sábado: 9h às 18h
                 </p>
-                </a>
             </div>
 
             <!-- Unidade 4 -->
             <div class="unidade">
-                <a href="agendamento.php?unidade=Oscar_Freire">
+                <href="agendamento.php?unidade=Oscar_Freire">
                 <img src="https://s4.gifyu.com/images/bpFOQ.jpg" alt="Unidade Oscar Freire">
                 <h3>OSCAR FREIRE</h3>
                 <p>
@@ -220,7 +217,6 @@ session_start();
                     Segunda a sexta: 9h às 20h<br>
                     Sábado: 9h às 18h
                 </p>
-                </a>
             </div>
         </div>
     </section>

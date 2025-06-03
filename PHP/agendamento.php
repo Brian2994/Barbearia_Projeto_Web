@@ -2,30 +2,26 @@
 session_start();
 require_once 'conexao.php';
 
-// Verifica se o usuário está autenticado
+
 if (!isset($_SESSION['usuario_id'])) {
     header("Location: formulario.php");
     exit;
 }
 
-// Verifica se o formulário foi submetido
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Recebe os dados do formulário
-    $usuario_id = $_SESSION['usuario_id'];  // ID do usuário da sessão
-    $servico_id = $_POST['servico_id'] ?? null;  // ID do serviço selecionado
-    $data = $_POST['data'] ?? null;  // Data selecionada
-    $horario = $_POST['horario'] ?? null;  // Horário selecionado
-    $local = $_POST['local'] ?? null;  // Unidade escolhida
+    $input = json_decode(file_get_contents('php://input'), true);
+    $usuario_id = $_SESSION['usuario_id'];
+    $servico_id = $input['servico_id'] ?? null;
+    $data = $input['data'] ?? null;
+    $horario = $input['horario'] ?? null;
+    $local = $input['local'] ?? null;
 
-$data = json_decode(file_get_contents('php://input'), true);
-    // Verifica se todos os campos obrigatórios foram preenchidos
-if (empty($data['servico_id']) || empty($data['data']) || empty($data['horario']) || empty($data['local'])) {
+    if (empty($servico_id) || empty($data) || empty($horario) || empty($local)) {
+        http_response_code(400);
         echo "Preencha todos os campos obrigatórios.";
         exit;
     }
-
     try {
-        // Insere o agendamento no banco de dados
         $stmt = $pdo->prepare("INSERT INTO agendamentos (usuario_id, servico_id, data, horario, local)
                                 VALUES (:usuario_id, :servico_id, :data, :horario, :local)");
         $stmt->bindParam(':usuario_id', $usuario_id);
@@ -34,18 +30,17 @@ if (empty($data['servico_id']) || empty($data['data']) || empty($data['horario']
         $stmt->bindParam(':horario', $horario);
         $stmt->bindParam(':local', $local);
 
-        // Executa o statement
         if ($stmt->execute()) {
-            // Redireciona após sucesso
             header("Location: index.php");
             exit;
         } else {
-            echo "Erro ao tentar agendar. Por favor, tente novamente.";
+            echo "❌ Erro ao tentar agendar. Por favor, tente novamente.";
         }
     } catch (PDOException $e) {
         echo "Erro ao agendar: " . $e->getMessage();
     }
-} else {
+  } else {
+    http_response_code(405);
     echo "Método inválido.";
 }
 ?>

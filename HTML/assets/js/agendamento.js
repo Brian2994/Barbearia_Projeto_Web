@@ -1,46 +1,44 @@
-document.getElementById('confirmButton').addEventListener('click', function () {
-    // Pega os dados dos campos
-    const servico_id = document.getElementById('servico_id').value;
-    const data = document.getElementById('data').value;
-    const horario = document.getElementById('horario').value;
-    const plano_id = document.getElementById('plano_id').value;
-    const local = document.getElementById('local').value;
+let unidadeSelecionada = "";
+let horarioSelecionado = "";
+let servicoSelecionado = null;
 
-    // Cria um objeto com os dados
-    const agendamentoData = {
-        servico_id: servico_id,
-        data: data,
-        horario: horario,
-        plano_id: plano_id,
-        local: local
-    };
+document.getElementById("unidades").addEventListener("click", function(e) {
+    if (e.target.tagName === "BUTTON") {
+        unidadeSelecionada = e.target.textContent;
+    }
+});
 
-    // Valida se todos os campos obrigatórios estão preenchidos
-    if (!servico_id || !data || !horario || !local) {
-        alert("Por favor, preencha todos os campos.");
+document.getElementById("horarios").addEventListener("click", function(e) {
+    if (e.target.tagName === "BUTTON") {
+        horarioSelecionado = e.target.textContent;
+    }
+});
+
+document.getElementById("confirmarAgendamento").addEventListener("click", async () => {
+    const dataSelecionada = document.getElementById("dataAgendamento").value;
+
+    if (!unidadeSelecionada || !horarioSelecionado || !dataSelecionada) {
+        document.getElementById("mensagem").innerText = "Preencha todos os campos.";
         return;
     }
 
-    // Envia os dados para o PHP usando Fetch (AJAX)
-    fetch('/PHP/agendamento.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(agendamentoData) // Envia os dados em formato JSON
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert("Agendamento realizado com sucesso!");
-            // Redireciona para outra página ou limpa o formulário
-            window.location.href = '/index.php';
-        } else {
-            alert("Erro ao agendar. Tente novamente.");
-        }
-    })
-    .catch(error => {
-        console.error('Erro:', error);
-        alert("Houve um erro. Tente novamente.");
+    const dados = new FormData();
+    dados.append("unidade", unidadeSelecionada);
+    dados.append("data", dataSelecionada);
+    dados.append("hora", horarioSelecionado);
+
+    const resposta = await fetch("agendamento.php", {
+        method: "POST",
+        body: dados
+    }); 
+    const texto = await resposta.text();
+    document.getElementById("mensagem").innerText = texto;
+
+document.querySelectorAll(".servico-btn").forEach(button => {
+    button.addEventListener("click", () => {
+        document.querySelectorAll(".servico-btn").forEach(btn => btn.classList.remove("selected"));
+        button.classList.add("selected");
+        servicoSelecionado = button.getAttribute("data-servico");
     });
+});
 });
