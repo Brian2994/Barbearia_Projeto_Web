@@ -1,40 +1,49 @@
-<?php 
-
+<?php
 session_start();
 require_once 'conexao.php';
 
+// Verifica se o usuário está autenticado
 if (!isset($_SESSION['usuario_id'])) {
     header("Location: formulario.php");
     exit;
 }
 
-if ($_SERVER["REQUEST_METHOD"] === "POST"){
-    $usuario_id = $_SESSION['usuario_id'];
-    $servico_id = $_POST['servico_id'] ?? null;
-    $data = $_POST['data'] ?? null;
-    $horario = $_POST['horario'] ?? null;
-    $plano_id = $_POST['plano_id'] ?? null;
-    $local = $_GET['local'] ?? null;
+// Verifica se o formulário foi submetido
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Recebe os dados do formulário
+    $usuario_id = $_SESSION['usuario_id'];  // ID do usuário da sessão
+    $servico_id = $_POST['servico_id'] ?? null;  // ID do serviço selecionado
+    $data = $_POST['data'] ?? null;  // Data selecionada
+    $horario = $_POST['horario'] ?? null;  // Horário selecionado
+    $local = $_POST['local'] ?? null;  // Unidade escolhida
 
-    if (!$servico || !$data || !$horario || !$local) {
+$data = json_decode(file_get_contents('php://input'), true);
+    // Verifica se todos os campos obrigatórios foram preenchidos
+if (empty($data['servico_id']) || empty($data['data']) || empty($data['horario']) || empty($data['local'])) {
         echo "Preencha todos os campos obrigatórios.";
         exit;
     }
 
     try {
-        $stmt = $pdo->prepare("INSERT INTO agendamentos (usuario_id, servico_id, plano_id, data, horario)
-                                VALUES (:usuario_id, :servico_id, :plano_id, :data, :horario)");
+        // Insere o agendamento no banco de dados
+        $stmt = $pdo->prepare("INSERT INTO agendamentos (usuario_id, servico_id, data, horario, local)
+                                VALUES (:usuario_id, :servico_id, :data, :horario, :local)");
         $stmt->bindParam(':usuario_id', $usuario_id);
         $stmt->bindParam(':servico_id', $servico_id);
-        $stmt->bindParam(':plano_id', $plano_id);
         $stmt->bindParam(':data', $data);
         $stmt->bindParam(':horario', $horario);
         $stmt->bindParam(':local', $local);
-        $stmt->execute();
-        
-        header("Location: painel.php?msg=agendado");
+
+        // Executa o statement
+        if ($stmt->execute()) {
+            // Redireciona após sucesso
+            header("Location: index.php");
+            exit;
+        } else {
+            echo "Erro ao tentar agendar. Por favor, tente novamente.";
+        }
     } catch (PDOException $e) {
-        echo "Erro ao agendar:" . $e->getMessage();
+        echo "Erro ao agendar: " . $e->getMessage();
     }
 } else {
     echo "Método inválido.";
@@ -106,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
       <a href="agenda.php?local=higienopolis">Agendar</a>
     </div>
   </div>
-
+    <script src="/HTML/assets/js/agendamento.js"></script>
 </body>
 
 </html>
