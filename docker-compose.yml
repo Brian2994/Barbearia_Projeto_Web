@@ -7,7 +7,7 @@ services:
     restart: always
     environment:
       MYSQL_DATABASE: projeto
-      MYSQL_USER: teste         
+      MYSQL_USER: teste
       MYSQL_PASSWORD: testesenha123
       MYSQL_ROOT_PASSWORD: roottestesenha123
     ports:
@@ -29,8 +29,8 @@ services:
     ports:
       - "8000:80"
     volumes:
-      - /home/samuel/Documents/ProjetoFacul:/var/www/html
-      - /home/samuel/Documents/ProjetoFacul/APACHE/000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - C:/Users/samul/Barbearia_Projeto_Web:/var/www/html
+      - C:/Users/samul/Barbearia_Projeto_Web/APACHE/000-default.conf:/etc/apache2/sites-available/000-default.conf
     depends_on:
       - mysql
 volumes:
