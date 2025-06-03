@@ -39,6 +39,7 @@ session_start();
   
   <!-- Formulário de Cadastro -->
   <form action="/PHP/cadastro.php" onsubmit="return validarCadastro()" method="POST" id="cadastroForm" class="form-container">
+    <div id="mensagemErro" style="color: red; margin-bottom: 10px;"></div>
     <h2>Cadastro</h2>
     <input type="text" name="nome" placeholder="Nome completo" required>
     <input type="email" name="email" placeholder="Email" required>
@@ -68,7 +69,6 @@ session_start();
 
   <!-- Arquivo JS externo -->
   <script src="/HTML/assets/js/script_formulario.js"></script>
-
 </body>
 
 </html>

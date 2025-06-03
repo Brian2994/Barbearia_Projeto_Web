@@ -97,3 +97,56 @@ button:hover {
 .switch-link:hover {
   color: #8b5e3c;
 }
+
+@media (max-width: 768px) {
+  body {
+    padding: 64px 20px;
+    height: auto;
+    margin: 0;
+  }
+
+  /* Oculta todos los formularios por padrão */
+  .form-container {
+    display: none;
+    position: static;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    width: 100%;
+    max-width: 100%;
+    padding: 20px;
+    box-shadow: none;
+    border-radius: 10px;
+    border: 1px solid #d1c5b7;
+    background-color: #fffaf4;
+  }
+
+  /* Muestra solo el formulario activo */
+  .form-container.active {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  form h2 {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  input,
+  select,
+  button {
+    width: 100%;
+    font-size: 16px;
+    padding: 12px;
+    box-sizing: border-box;
+  }
+
+  .switch-link,
+  .password-recovery a {
+    font-size: 14px;
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+  }
+}

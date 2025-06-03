@@ -155,5 +155,44 @@ body {
 }
 
 @media (max-width: 768px) {
-    
+    .main-container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .calendar {
+        grid-template-columns: repeat(7, 1fr);
+        gap: 3px;
+    }
+
+    .day-header,
+    .day,
+    .empty {
+        padding: 3px;
+        font-size: 10px;
+    }
+
+    .schedule {
+        padding: 15px;
+    }
+
+    .slot {
+        font-size: 11px;
+        padding: 3px;
+        margin: 2px;
+    }
+
+    #confirmButton {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+
+    .calendar-container h1,
+    .schedule h2 {
+        font-size: 18px;
+    }
+
+    .confirmation-container p {
+        font-size: 16px;
+    }
 }

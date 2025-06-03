@@ -10,22 +10,28 @@
 
 <script>
     function toggleMenu() {
-    const menu = document.getElementById('menu');
-    menu.classList.toggle('show');
-}
-    document.querySelectorAll('.navbar a').forEach(link => {
-    link.addEventListener('click', () => {
-    document.getElementById('menu').classList.remove('show');
-    });
-});
-    document.addEventListener('click', function(e) {
-    const menu = document.getElementById('menu');
-    const hamburger = document.querySelector('.hamburguer');
+        const menu = document.getElementById('menu');
+        menu.classList.toggle('show');
+    }
 
-    if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
-    menu.classList.remove('show');
-}
-});
+    document.addEventListener('DOMContentLoaded', () => {
+        const menu = document.getElementById('menu');
+        const hamburger = document.querySelector('.hamburguer');
+
+        document.querySelectorAll('.navbar a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('show');
+            });
+        });
+        document.addEventListener('click', function (e) {
+            const menu = document.getElementById('menu');
+            const hamburger = document.querySelector('.hamburguer');
+
+            if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+                menu.classList.remove('show');
+            }
+        });
+    });
 </script>
 
 
@@ -36,7 +42,8 @@
         <div class="container">
             <div class="topo">
                 <a href="index.html" class="logo">
-                    <img src="/HTML/assets/imagens/logo_barber_company.png" alt="Barbearia company logo" class="logo-img">
+                    <img src="/HTML/assets/imagens/logo_barber_company.png" alt="Barbearia company logo"
+                        class="logo-img">
                 </a>
                 <div class="hamburguer" onclick="toggleMenu()">☰</div>
             </div>

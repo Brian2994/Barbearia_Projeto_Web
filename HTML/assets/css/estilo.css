@@ -360,10 +360,9 @@ footer {
         background-color: rgba(0, 0, 0, 0.9);
         position: absolute;
         top: 5px;
-        left: 0;
-        width: 100%;
-        padding: 10px 0;
-        z-index: 10000;
+        right: 0;
+        z-index: 1000;
+        border-radius: 10px;
     }
 
     #menu.show ul {
@@ -383,46 +382,77 @@ footer {
     }
 
     /* Sobre nós */
+    #sobre {
+        padding-top: 30px;
+    }
     #sobre .container {
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 20px;
         text-align: center;
+        padding: 0px;
+    }
+
+    #sobre .left {
+        padding-right: 0px;
     }
 
     #sobre .left img {
         width: 100%;
         max-height: 250px;
         object-fit: contain;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
     }
 
     #sobre .right {
         width: 100%;
         max-width: 95%;
+        padding-left: 0px;
         text-align: justify;
     }
 
     #sobre .right h1 {
         margin-bottom: 10px;
+        font-size: 20px;
         text-align: center;
+    }
+
+    #sobre .right p {
+        font-size: 16px;
+        line-height: 1.4;
+    }
+
+    #servicos,
+    #unidades,
+    #planos {
+        padding-top: 20px;
+    }
+
+    #servicos h2,
+    #unidades h2,
+    #planos h2 {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    #servicos b, #unidades b, #planos b {
+        font-size: 38px;
     }
 
     .servico,
     .unidade,
     .plano {
-        width: 50%;
+        width: 80%;
         max-width: 350px;
     }
 
     .txt h1 {
-        font-size: 26px;
+        font-size: 18px;
     }
 
     .buttons a {
-        font-size: 16px;
-        padding: 10px 16px;
+        font-size: 14px;
+        padding: 8px 14px;
     }
 }
     .usuario-logado {

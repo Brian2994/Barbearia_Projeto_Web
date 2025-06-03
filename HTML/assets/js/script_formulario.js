@@ -24,17 +24,3 @@ function mostrarLogin() {
     menu.classList.remove('show');
 }
 });
-function validarCadastro() {
-  const nome = document.getElementById('nome').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const senha = document.getElementById('senha').value.trim();
-  const erro = document.getElementById('erroCadastro');
-  
-  if (nome === '' || email === '' || senha === '') {
-
-    erro.textContent = 'Por favor, preencha todos os campos que foram solicitados.';
-    return  false;
-  }
-
-  return true
-}
