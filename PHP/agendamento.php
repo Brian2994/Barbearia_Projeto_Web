@@ -10,13 +10,14 @@ if (!isset($_SESSION['usuario_id'])) {
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $input = json_decode(file_get_contents('php://input'), true);
+
     $usuario_id = $_SESSION['usuario_id'];
     $servico_id = $input['servico_id'] ?? null;
     $data = $input['data'] ?? null;
     $horario = $input['horario'] ?? null;
     $local = $input['local'] ?? null;
 
-    if (empty($servico_id) || empty($data) || empty($horario) || empty($local)) {
+    if (!$servico_id || !$data || !$horario || !$local) {
         http_response_code(400);
         echo "Preencha todos os campos obrigatórios.";
         exit;
@@ -40,7 +41,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         echo "Erro ao agendar: " . $e->getMessage();
     }
   } else {
-    http_response_code(405);
     echo "Método inválido.";
 }
 ?>

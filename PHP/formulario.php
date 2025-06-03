@@ -14,13 +14,6 @@ session_start();
 </head>
 
 <body>
-    <!-- <form id="agendamentoForm" method="POST" action="agendamento.php"> 
-    <input type="hidden" name="unidade" id="inputUnidade">
-    <input type="hidden" name="dia" id="inputDia">
-    <input type="hidden" name="horario" id="inputHorario">
-    <input type="hidden" name="servico" id="inputServico">
-</form> -->
-
   <!-- Formulário de Agendamento-->
   <form action="/PHP/agendamento.php" method="POST" id="agendamentoForm" class="form-container">
     <label for="servico_id">Serviço:</label>

@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const daysContainer = document.querySelector('.calendar');
   const slots = document.querySelectorAll('.slot');
-
   const today = new Date();
   const currentYear = today.getFullYear();
   const currentMonth = today.getMonth(); // Mês atual (0-11)
@@ -93,10 +92,31 @@ document.addEventListener('DOMContentLoaded', function () {
   // Confirmação
   confirmButton.addEventListener("click", () => {
     if (selectedDay && selectedSlot) {
+      const dataCompleta = new Date(currentYear, currentMonth, selectedDay);
+      const dataFormatada = dataCompleta.toISOString().split('T')[0];
+      fetch("/PHP/agendamento.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        local: localParam,
+        data: dataFormatada,
+        horario: selectedSlot,
+        servico_id: 1
+      })
+    })
+      .then(response => response.text())
+      .then(mensagem =>{
       confirmationMessage.textContent = `✅ Seu pedido foi agendado para o dia ${selectedDay} às ${selectedSlot}`;
       confirmationSection.style.display = "block";
       scheduleSection.style.display = "none";
       confirmButton.style.display = "none";
+      })
+      .catch(error => {
+        confirmationMessage.textContent = '❌ Erro ao agendar. Tente novamente.';
+        confirmationSection.style.display = "block";
+      });
     } else {
       alert("Por favor, selecione um dia e um horário antes de confirmar.");
     }
