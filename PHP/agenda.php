@@ -94,6 +94,7 @@ session_start();
     </main>
 
     <script src="/HTML/assets/js/agenda.js"></script>
+    <script src="/HTML/assets/js/agendamento.js"></script>
 </body>
 
 </html>

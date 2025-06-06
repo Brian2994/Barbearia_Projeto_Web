@@ -1,43 +1,72 @@
-<?php 
-
+<?php
 session_start();
-require_once 'conexao.php';
+require_once 'conexao.php'; //
 
+// Verifica se o usuário está logado, redireciona para o formulário de login caso contrário
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: formulario.php");
-    exit;
-}
+header("Location: formulario.php");
+exit;
+} 
 
-if ($_SERVER["REQUEST_METHOD"] === "POST"){
-    $usuario_id = $_SESSION['usuario_id'];
-    $servico_id = $_POST['servico_id'] ?? null;
-    $data = $_POST['data'] ?? null;
-    $horario = $_POST['horario'] ?? null;
-    $plano_id = $_POST['plano_id'] ?? null;
-    $local = $_GET['local'] ?? null;
+if ($_SERVER["REQUEST_METHOD"] === "POST") { //
+    $input = json_decode(file_get_contents('php://input'), true); //
 
-    if (!$servico || !$data || !$horario || !$local) {
-        echo "Preencha todos os campos obrigatórios.";
+    $usuario_id = $_SESSION['usuario_id']; //
+    $servico_id = $input['servico_id'] ?? null; //
+    $data = $input['data'] ?? null; //
+    $horario = $input['horario'] ?? null; //
+    $local = $input['local'] ?? null; //
+
+    // Validação básica dos campos
+    if (!$servico_id || !$data || !$horario || !$local) { //
+        http_response_code(400); // Bad Request
+        echo json_encode(["status" => "error", "message" => "Preencha todos os campos obrigatórios."]); //
         exit;
     }
 
     try {
-        $stmt = $pdo->prepare("INSERT INTO agendamentos (usuario_id, servico_id, plano_id, data, horario)
-                                VALUES (:usuario_id, :servico_id, :plano_id, :data, :horario)");
-        $stmt->bindParam(':usuario_id', $usuario_id);
-        $stmt->bindParam(':servico_id', $servico_id);
-        $stmt->bindParam(':plano_id', $plano_id);
-        $stmt->bindParam(':data', $data);
-        $stmt->bindParam(':horario', $horario);
-        $stmt->bindParam(':local', $local);
-        $stmt->execute();
-        
-        header("Location: painel.php?msg=agendado");
+        // **NOVA VERIFICAÇÃO: Checar se o horário já está ocupado**
+        $stmt_check = $pdo->prepare("SELECT COUNT(*) FROM agendamentos WHERE local = :local AND data = :data AND horario = :horario");
+        $stmt_check->bindParam(':local', $local);
+        $stmt_check->bindParam(':data', $data);
+        $stmt_check->bindParam(':horario', $horario);
+        $stmt_check->execute();
+        $count = $stmt_check->fetchColumn();
+
+        if ($count > 0) {
+            // Horário já agendado
+            http_response_code(409); // Conflict
+            echo json_encode(["status" => "error", "message" => "❌ Desculpe, este horário não está mais disponível. Por favor, escolha outro."]);
+            exit;
+        }
+
+        // Se o horário estiver livre, prossegue com o agendamento
+        $stmt = $pdo->prepare("INSERT INTO agendamentos (usuario_id, servico_id, data, horario, local)
+                                VALUES (:usuario_id, :servico_id, :data, :horario, :local)"); //
+        $stmt->bindParam(':usuario_id', $usuario_id); //
+        $stmt->bindParam(':servico_id', $servico_id); //
+        $stmt->bindParam(':data', $data); //
+        $stmt->bindParam(':horario', $horario); //
+        $stmt->bindParam(':local', $local); //
+
+        if ($stmt->execute()) { //
+            http_response_code(201); // Created
+            echo json_encode(["status" => "success", "message" => "✅ Seu pedido foi agendado com sucesso!"]);
+            // Não redirecione aqui se você quer que o JavaScript trate a resposta na página de agenda
+            header("Location: index.php"); //
+            exit; //
+        } else {
+            http_response_code(500); // Internal Server Error
+            echo json_encode(["status" => "error", "message" => "❌ Erro ao tentar agendar. Por favor, tente novamente."]); //
+        }
     } catch (PDOException $e) {
-        echo "Erro ao agendar:" . $e->getMessage();
+        http_response_code(500); // Internal Server Error
+        // Em produção, logue o erro em vez de exibi-lo diretamente
+        error_log("Erro ao agendar: " . $e->getMessage());
+        echo json_encode(["status" => "error", "message" => "Erro interno no servidor ao tentar agendar."]); //
     }
-} else {
-    echo "Método inválido.";
+  } else {
+    http_response_code(405); // Method Not Allowed
 }
 ?>
 
@@ -106,7 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
       <a href="agenda.php?local=higienopolis">Agendar</a>
     </div>
   </div>
-
+    <script src="/HTML/assets/js/agendamento.js"></script>
 </body>
 
 </html>

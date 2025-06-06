@@ -57,5 +57,24 @@ button:hover {
 }
 
 @media (max-width: 768px) {
-    
+    body {
+        padding: 20px;
+    }
+
+    .form-container {
+        width: 100%;
+        max-width: 400px;
+        padding: 20px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    input,
+    button {
+        font-size: 15px;
+        padding: 10px;
+    }
+
+    .form-container h2 {
+        font-size: 22px;
+    }
 }

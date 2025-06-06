@@ -116,7 +116,7 @@ session_start();
         <div class="servicos-container">
             <!-- Servico 1 -->
             <div class="servico">
-                <a href="agendamento.php?servico=barba">
+                <a href="agendamento.php?servico=barba" style='text-decoration:none'>
                 <img src="https://s4.gifyu.com/images/bpFBO.webp" alt="corte de barba">
                 <h3>Corte de barba</h3>
                 <p>Estilo clássico com acabamento preciso</p>
@@ -125,7 +125,7 @@ session_start();
 
             <!-- Servico 2 -->
             <div class="servico">
-                <a href="agendamento.php?servico=cabelo">
+                <a href="agendamento.php?servico=cabelo" style='text-decoration:none'>
                 <img src="https://s4.gifyu.com/images/bpFJb.jpg" alt="corte de cabelo">
                 <h3>Corte de cabelo</h3>
                 <p>Visual moderno ou tradicional com atenção aos detalhes</p>
@@ -134,7 +134,7 @@ session_start();
 
             <!-- Servico 3 -->
             <div class="servico">
-                <a href="agendamento.php?servico=higiene_e_cuidados">
+                <a href="agendamento.php?servico=higiene_e_cuidados" style='text-decoration:none'>
                 <img src="https://s4.gifyu.com/images/bpFOx.jpg" alt="higiene e cuidados">
                 <h3>Higiene e cuidados</h3>
                 <p>Limpeza profunda e produtos de alta qualidade para sua pele</p>
@@ -143,7 +143,7 @@ session_start();
 
             <!-- Servico 4 -->
             <div class="servico">
-                <a href="agendamento.php?servico=corte_e_barba">
+                <a href="agendamento.php?servico=corte_e_barba" style='text-decoration:none'>
                 <img src="https://s4.gifyu.com/images/bpFOb.jpg" alt="corte e barba">
                 <h3>Corte e barba</h3>
                 <p>Combo completo para um visual alinhado e marcante</p>
