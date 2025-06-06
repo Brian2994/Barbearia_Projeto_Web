@@ -12,6 +12,12 @@ CREATE TABLE servicos(
     preco DECIMAL(10,2) NOT NULL  
 );
 
+INSERT INTO servicos (nome, descricao, preco) VALUES
+('Corte de barba', 'Estilo clássico com acabamento preciso', 35.00),
+('Corte de cabelo', 'Visual moderno ou tradicional com atenção aos detalhes', 45.00),
+('Higiene e cuidados', 'Limpeza profunda e produtos de alta qualidade para sua pele', 50.00),
+('Corte e barba', 'Combo completo para um visual alinhado e marcante', 70.00);
+
 CREATE TABLE planos (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,

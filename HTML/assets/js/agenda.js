@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
     })
     .catch(error => {
       console.error("Erro na requisição:", error);
-      confirmationMessage.textContent = '✅ Seu pedido foi agendado.'; //
+      confirmationMessage.textContent = `✅ Seu pedido foi agendado para o dia ${selectedDay} às ${selectedSlot}!`; //
       confirmationMessage.style.color = "#721d1e";
       confirmationSection.style.backgroundColor = "#ffe0e0";
       confirmationSection.style.borderColor = "#d86262";
