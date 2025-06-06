@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Agendas de Hoy</title>
+  <link rel="stylesheet" href="/HTML/assets/css/admin.css">
+</head>
+<body>
+  <h1>Agendas para hoy</h1>
+  <div id="agendas-hoy-container">Cargando agendas...</div>
+
+  <script>
+    fetch('php/read_agendas_hoy.php')
+      .then(res => res.json())
+      .then(agendas => {
+        const contenedor = document.getElementById('agendas-hoy-container');
+
+        if (agendas.length === 0) {
+          contenedor.innerHTML = "<p>No hay agendas para hoy.</p>";
+        } else {
+          contenedor.innerHTML = agendas.map(a => `
+            <div class="agenda">
+              <h3>${a.titulo}</h3>
+              <p>${a.descripcion}</p>
+              <small>${a.fecha}</small>
+            </div>
+          `).join('');
+        }
+      })
+      .catch(err => {
+        console.error('Error:', err);
+        document.getElementById('agendas-hoy-container').innerHTML = "<p>Error al cargar agendas.</p>";
+      });
+  </script>
+</body>
+</html>
