@@ -29,8 +29,8 @@ services:
     ports:
       - "8000:80"
     volumes:
-      - C:/Users/samul/Barbearia_Projeto_Web:/var/www/html
-      - C:/Users/samul/Barbearia_Projeto_Web/APACHE/000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - ./:/var/www/html
+      - ./APACHE/000-default.conf:/etc/apache2/sites-available/000-default.conf
     depends_on:
       - mysql
 volumes:
