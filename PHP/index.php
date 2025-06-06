@@ -1,5 +1,6 @@
 <?php 
 session_start();
+
 ?>
 
 <!--HTML na mesma página -->
