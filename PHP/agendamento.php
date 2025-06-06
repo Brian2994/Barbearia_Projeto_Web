@@ -1,31 +1,41 @@
 <?php
 session_start();
-require_once 'conexao.php'; //
+require_once 'conexao.php';
 
-// Verifica se o usuário está logado, redireciona para o formulário de login caso contrário
 if (!isset($_SESSION['usuario_id'])) {
-header("Location: formulario.php");
-exit;
-} 
+  header("Location: formulario.php");
+  exit;
+  } 
+$servico_selecionado = $_GET['servico'] ?? '';
+$mapa_servicos = [
+    'barba' => 1,
+    'cabelo' => 2,
+    'higiene_e_cuidados' => 3,
+    'corte_e_barba' => 4
+];
+$servico_id_para_link = $mapa_servicos[$servico_selecionado] ?? 0;
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") { //
-    $input = json_decode(file_get_contents('php://input'), true); //
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $input = json_decode(file_get_contents('php://input'), true);
 
-    $usuario_id = $_SESSION['usuario_id']; //
-    $servico_id = $input['servico_id'] ?? null; //
-    $data = $input['data'] ?? null; //
-    $horario = $input['horario'] ?? null; //
-    $local = $input['local'] ?? null; //
-
-    // Validação básica dos campos
-    if (!$servico_id || !$data || !$horario || !$local) { //
-        http_response_code(400); // Bad Request
-        echo json_encode(["status" => "error", "message" => "Preencha todos os campos obrigatórios."]); //
+    if (!isset($_SESSION['usuario_id'])) {
+        http_response_code(401);
+        echo json_encode(["status" => "error", "message" => "Usuário não logado. Faça login para agendar."]);
         exit;
     }
 
+    $usuario_id = $_SESSION['usuario_id'];
+    $servico_id = $input['servico_id'] ?? null;
+    $data = $input['data'] ?? null;
+    $horario = $input['horario'] ?? null;
+    $local = $input['local'] ?? null;
+
+    if (!$servico_id || !$data || !$horario || !$local) {
+        http_response_code(400);
+        echo json_encode(["status" => "error", "message" => "Preencha todos os campos obrigatórios."]);
+        exit;
+    }
     try {
-        // **NOVA VERIFICAÇÃO: Checar se o horário já está ocupado**
         $stmt_check = $pdo->prepare("SELECT COUNT(*) FROM agendamentos WHERE local = :local AND data = :data AND horario = :horario");
         $stmt_check->bindParam(':local', $local);
         $stmt_check->bindParam(':data', $data);
@@ -34,39 +44,33 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") { //
         $count = $stmt_check->fetchColumn();
 
         if ($count > 0) {
-            // Horário já agendado
-            http_response_code(409); // Conflict
+            http_response_code(409);
             echo json_encode(["status" => "error", "message" => "❌ Desculpe, este horário não está mais disponível. Por favor, escolha outro."]);
             exit;
         }
 
-        // Se o horário estiver livre, prossegue com o agendamento
         $stmt = $pdo->prepare("INSERT INTO agendamentos (usuario_id, servico_id, data, horario, local)
-                                VALUES (:usuario_id, :servico_id, :data, :horario, :local)"); //
-        $stmt->bindParam(':usuario_id', $usuario_id); //
-        $stmt->bindParam(':servico_id', $servico_id); //
-        $stmt->bindParam(':data', $data); //
-        $stmt->bindParam(':horario', $horario); //
-        $stmt->bindParam(':local', $local); //
+                                VALUES (:usuario_id, :servico_id, :data, :horario, :local)");
+        $stmt->bindParam(':usuario_id', $usuario_id);
+        $stmt->bindParam(':servico_id', $servico_id);
+        $stmt->bindParam(':data', $data);
+        $stmt->bindParam(':horario', $horario);
+        $stmt->bindParam(':local', $local);
 
-        if ($stmt->execute()) { //
-            http_response_code(201); // Created
-            echo json_encode(["status" => "success", "message" => "✅ Seu pedido foi agendado com sucesso!"]);
-            // Não redirecione aqui se você quer que o JavaScript trate a resposta na página de agenda
-            header("Location: index.php"); //
-            exit; //
+        if ($stmt->execute()) {
+            http_response_code(201);
+            echo json_encode(["status" => "success", "message" => `✅ Seu pedido foi agendado para o dia ${selectedDay} às ${selectedSlot}!`]);
+            exit;
         } else {
-            http_response_code(500); // Internal Server Error
-            echo json_encode(["status" => "error", "message" => "❌ Erro ao tentar agendar. Por favor, tente novamente."]); //
+            http_response_code(500);
+            echo json_encode(["status" => "error", "message" => "❌ Erro ao tentar agendar. Por favor, tente novamente."]);
         }
     } catch (PDOException $e) {
-        http_response_code(500); // Internal Server Error
-        // Em produção, logue o erro em vez de exibi-lo diretamente
+        http_response_code(500);
         error_log("Erro ao agendar: " . $e->getMessage());
-        echo json_encode(["status" => "error", "message" => "Erro interno no servidor ao tentar agendar."]); //
+        echo json_encode(["status" => "error", "message" => "Erro interno no servidor ao tentar agendar."]);
     }
-  } else {
-    http_response_code(405); // Method Not Allowed
+    exit;
 }
 ?>
 
@@ -96,7 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") { //
         Segunda a sexta: 9h às 20h<br>
         Sábado: 9h às 18h
       </p>
-      <a href="agenda.php?local=vila-olimpia">Agendar</a>
+      <a href="agenda.php?local=vila-olimpia&servico_id=<?php echo $servico_id_para_link; ?>">Agendar</a>
     </div>
     <div class="card rotate-slight-left card-itaim">
       <h2>ITAIM BIBI</h2>
@@ -108,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") { //
         Segunda a sexta: 9h às 20h<br>
         Sábado: 9h às 18h
       </p>
-      <a href="agenda.php?local=itaim-bibi">Agendar</a>
+      <a href="agenda.php?local=itaim-bibi&servico_id=<?php echo $servico_id_para_link; ?>">Agendar</a>
     </div>
     <div class="card rotate-slight-right card-moema">
       <h2>MOEMA</h2>
@@ -120,7 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") { //
         Segunda a sexta: 9h às 20h<br>
         Sábado: 9h às 18h
       </p>
-      <a href="agenda.php?local=moema">Agendar</a>
+      <a href="agenda.php?local=moema&servico_id=<?php echo $servico_id_para_link; ?>">Agendar</a>
     </div>
     <div class="card rotate-right card-oscar">
       <h2>HIGIENÓPOLIS</h2>
@@ -132,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") { //
         Segunda a sexta: 9h às 20h<br>
         Sábado: 9h às 18h
       </p>
-      <a href="agenda.php?local=higienopolis">Agendar</a>
+      <a href="agenda.php?local=higienopolis&servico_id=<?php echo $servico_id_para_link; ?>">Agendar</a>
     </div>
   </div>
     <script src="/HTML/assets/js/agendamento.js"></script>
