@@ -1,32 +1,29 @@
 <?php
-// Mostrar errores para debug
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Respuesta JSON
 header('Content-Type: application/json');
 
-// Configuración de conexión con Docker (ajustada a tu docker-compose)
-$host = 'mysql'; // nombre del servicio del contenedor MySQL
+// Zona horaria
+date_default_timezone_set('America/Sao_Paulo');
+
+// Conexão
+$host = 'mysql';
 $user = 'teste';
 $password = 'testesenha123';
 $database = 'projeto';
 
-// Conexión MySQL
 $conn = new mysqli($host, $user, $password, $database);
 
-// Validar conexión
 if ($conn->connect_error) {
     http_response_code(500);
     echo json_encode(["error" => "Erro de conexão com o banco de dados"]);
     exit;
 }
 
-// Fecha de hoy
 $hoje = date('Y-m-d');
 
-// Consulta SQL
 $sql = "
     SELECT 
         a.id,
@@ -58,3 +55,7 @@ while ($row = $result->fetch_assoc()) {
 }
 
 echo json_encode($agendas);
+
+// Cerrar recursos
+$stmt->close();
+$conn->close();
