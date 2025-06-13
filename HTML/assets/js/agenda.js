@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     } else {
       alert("Por favor, selecione um dia e um horário antes de confirmar."); 
-    }
+        }
   });
 
   renderDays(); // Inicializa o calendário
