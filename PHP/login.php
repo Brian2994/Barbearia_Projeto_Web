@@ -25,6 +25,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $erro = "Preencha todos os campos!";
     }
 }
-?>
 
 

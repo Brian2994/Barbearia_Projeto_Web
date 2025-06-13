@@ -1,4 +1,4 @@
-<?php 
+<?php
 $host = 'mysql';
 $db = 'projeto';
 $user = 'teste';

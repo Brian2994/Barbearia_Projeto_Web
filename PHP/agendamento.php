@@ -2,10 +2,6 @@
 session_start();
 require_once 'conexao.php';
 
-if (!isset($_SESSION['usuario_id'])) {
-  header("Location: formulario.php");
-  exit;
-  }
 // --- PARTE 1: TRATAMENTO DA API (REQUISIÇÃO POST) ---
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $input = json_decode(file_get_contents('php://input'), true);

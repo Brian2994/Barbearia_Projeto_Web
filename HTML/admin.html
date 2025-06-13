@@ -2,35 +2,212 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Agendas de Hoy</title>
-  <link rel="stylesheet" href="/HTML/assets/css/admin.css">
-</head>
+  <title>Painel de Agendamentos</title>
+  <link rel="stylesheet" href="/HTML/assets/css/admin.css"> </head>
 <body>
-  <h1>Agendas para hoje</h1>
-  <div id="agendas-hoy-container">Cargando agendas...</div>
+  <h1>Painel de Agendamentos</h1>
+  <form id="edit-form" class="edit-form-container" style="display: none;">
+  <h3>Editando Agendamento</h3>
+  <input type="hidden" id="edit-id">
+  
+  <label for="edit-data">Data:</label>
+  <input type="date" id="edit-data" required>
+  
+  <label for="edit-horario">Horário:</label>
+  <input type="time" id="edit-horario" required>
+  
+  <button type="submit">Salvar Alterações</button>
+  <button type="button" id="cancel-edit-btn">Cancelar</button>
+</form>
+  <div id="admin-container">
+    <p>Carregando agendamentos...</p>
+  </div>
 
   <script>
-    fetch('php/read_agendas_hoy.php')
-      .then(res => res.json())
-      .then(agendas => {
-        const contenedor = document.getElementById('agendas-hoy-container');
+    // Função para carregar e renderizar os agendamentos
+    function carregarAgendamentos() {
+      // Corrigindo o caminho para o seu script PHP
+      fetch('/PHP/read.php')
+        .then(res => {
+          if (!res.ok) {
+            throw new Error(`Erro na rede: ${res.statusText}`);
+          }
+          return res.json();
+        })
+        .then(agendamentos => {
+          const container = document.getElementById('admin-container');
 
-        if (agendas.length === 0) {
-          contenedor.innerHTML = "<p>No hay agendas para hoy.</p>";
-        } else {
-          contenedor.innerHTML = agendas.map(a => `
-            <div class="agenda">
-              <h3>${a.titulo}</h3>
-              <p>${a.descripcion}</p>
-              <small>${a.fecha}</small>
-            </div>
+          if (!agendamentos || agendamentos.length === 0) {
+            container.innerHTML = "<p>Nenhum agendamento encontrado.</p>";
+            return;
+          }
+
+          // Criando a estrutura da tabela
+          let tabelaHtml = `
+            <table>
+              <thead>
+                <tr>
+                  <th>Cliente</th>
+                  <th>Serviço</th>
+                  <th>Unidade</th>
+                  <th>Data</th>
+                  <th>Horário</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+          `;
+
+          // Usando os nomes corretos que vêm do PHP
+          tabelaHtml += agendamentos.map(ag => `
+            <tr id="agendamento-${ag.id}">
+              <td>${ag.nome_usuario}</td>
+              <td>${ag.nome_servico}</td>
+              <td>${ag.local}</td>
+              <td>${new Date(ag.data + 'T00:00:00').toLocaleDateString('pt-BR')}</td>
+              <td>${ag.horario}</td>
+              <td>
+                <button class="edit-btn" data-id="${ag.id}">Editar</button>
+                <button class="delete-btn" data-id="${ag.id}">Remover</button>
+              </td>
+            </tr>
           `).join('');
+
+          tabelaHtml += `
+              </tbody>
+            </table>
+          `;
+          
+          container.innerHTML = tabelaHtml;
+        })
+        .catch(err => {
+          const container = document.getElementById('admin-container');
+          container.innerHTML = "<p>Erro ao carregar os agendamentos. Verifique o console.</p>";
+          console.error('Erro:', err);     
+        });
+    }
+
+    // Adicionando um listener para os botões de remover/editar
+    document.getElementById('admin-container').addEventListener('click', function(event) {
+        const target = event.target;
+        const id = target.dataset.id;
+
+        if (target.classList.contains('delete-btn')) {
+            if (confirm(`Tem certeza que deseja remover o agendamento ${id}?`)) {
+                // Lógica para remover (próximo passo)
+                removerAgendamento(id);
+            }
         }
-      })
-      .catch(err => {
-        console.error('Error:', err);
-        document.getElementById('agendas-hoy-container').innerHTML = "<p>Error al cargar agendas.</p>";
-      });
+
+        if (target.classList.contains('edit-btn')) {
+            // Preenche o formulário com os dados do agendamento
+            document.getElementById('edit-id').value = id;
+            // Pegamos a data no formato AAAA-MM-DD do atributo data-data
+            document.getElementById('edit-data').value = target.dataset.data;
+            document.getElementById('edit-horario').value = target.dataset.horario;
+            
+            // Mostra o formulário de edição
+            editForm.style.display = 'block';
+        }
+    });
+
+    // Função para remover um agendamento
+    function removerAgendamento(id) {
+        fetch('/PHP/delete.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: id })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === 'success') {
+                // Remove a linha da tabela na interface
+                const linhaParaRemover = document.getElementById(`agendamento-${id}`);
+                if(linhaParaRemover) {
+                    linhaParaRemover.remove();
+                }
+                alert(data.message);
+            } else {
+                alert('Erro ao remover: ' + data.error);
+            }
+        })
+        .catch(err => console.error('Erro na remoção:', err));
+    }
+    adminContainer.addEventListener('click', function(event) {
+        const target = event.target;
+        const id = target.dataset.id;
+
+        if (target.classList.contains('delete-btn')) {
+            if (confirm(`Tem certeza que deseja remover o agendamento ${id}?`)) {
+                removerAgendamento(id);
+            }
+        }
+
+        if (target.classList.contains('edit-btn')) {
+            // Preenche o formulário com os dados do agendamento
+            document.getElementById('edit-id').value = id;
+            // Pegamos a data no formato AAAA-MM-DD do atributo data-data
+            document.getElementById('edit-data').value = target.dataset.data;
+            document.getElementById('edit-horario').value = target.dataset.horario;
+            
+            // Mostra o formulário de edição
+            editForm.style.display = 'block';
+        }
+    });
+
+    // Listener para o formulário de edição
+    editForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Impede o recarregamento da página
+
+        const id = document.getElementById('edit-id').value;
+        const data = document.getElementById('edit-data').value;
+        const horario = document.getElementById('edit-horario').value;
+
+        fetch('/PHP/update_appointment.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: id, data: data, horario: horario })
+        })
+        .then(res => res.json())
+        .then(result => {
+            if (result.status === 'success') {
+                alert(result.message);
+                editForm.style.display = 'none'; // Esconde o formulário
+                carregarAgendamentos(); // Recarrega a lista para mostrar os dados atualizados
+            } else {
+                alert('Erro ao atualizar: ' + result.error);
+            }
+        })
+        .catch(err => console.error('Erro na atualização:', err));
+    });
+
+    // Listener para o botão de cancelar edição
+    document.getElementById('cancel-edit-btn').addEventListener('click', function() {
+        editForm.style.display = 'none';
+    });
+    
+    // Função para remover um agendamento (sem alterações)
+    function removerAgendamento(id) {
+        fetch('/PHP/delete_appointment.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: id })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === 'success') {
+                const linhaParaRemover = document.getElementById(`agendamento-${id}`);
+                if(linhaParaRemover) {
+                    linhaParaRemover.remove();
+                }
+            } else {
+                alert('Erro ao remover: ' + data.error);
+            }
+        })
+        .catch(err => console.error('Erro na remoção:', err));
+    }
+
+    carregarAgendamentos(); 
   </script>
 </body>
 </html>
